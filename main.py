@@ -5,7 +5,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 #To connect to database
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -14,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///new-movie-collection.db"
 db = SQLAlchemy(app)
 
 MOVIE_DB_SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
-MOVIE_DB_API_KEY ='87e6c7b3d2f2a1419f344ba6a22f5268'
+MOVIE_DB_API_KEY =os.getenv("MOVIE_DB_API_KEY")
 MOVIE_DB_INFO_URL = "https://api.themoviedb.org/3/movie"
 MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w300"
 
